@@ -1,4 +1,5 @@
--- Drops the programming_db if it already exists 
+-- Drops the programming_db if it already exists
+-- Only for development (not best practices)
 DROP DATABASE IF EXISTS employee_trackerDB;
 
 -- Created the DB "employee_trackerDB" (only works on local connections)
@@ -9,9 +10,8 @@ USE employee_trackerDB;
 
 -- Created the table "department"
 CREATE TABLE department (
-  id INT AUTO_INCREMENT NOT NULL,
-  name varchar(30) NOT NULL,
-  PRIMARY KEY(id)
+  id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  name varchar(30) UNIQUE NOT NULL
 );
 
 -- Created the table "role"
@@ -30,8 +30,8 @@ CREATE TABLE employee (
   first_name varchar(30) NOT NULL,
   last_name varchar(30) NOT NULL,
   role_id INT NOT NULL,
-  FOREIGN KEY(role_id) references role(id),
   manager_id INT,
+  FOREIGN KEY(role_id) references role(id),
   FOREIGN KEY(manager_id) references employee(id),
   PRIMARY KEY(id)
 );
