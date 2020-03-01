@@ -32,6 +32,7 @@ CREATE TABLE employee (
   role_id INT NOT NULL,
   FOREIGN KEY(role_id) references role(id),
   manager_id INT,
+  FOREIGN KEY(manager_id) references employee(id),
   PRIMARY KEY(id)
 );
 
