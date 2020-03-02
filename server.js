@@ -20,42 +20,95 @@ CFonts.say('Employee Tracker', {
     env: 'node'                 // define the environment CFonts is being executed in
 });
 
-if (answers.roleChoice === 'Manager') {
-    ManagerRole(answers);
-    console.log('Manager title');
-} else if (answers.roleChoice === 'Engineer') {
-    EngineerRole(answers);
-    console.log('Engineer title');
-} else if (answers.roleChoice === 'Intern') {
-    InternRole(answers);
-    console.log('Intern title');
-} else {
-    console.log('I am done!');
+function runStart() {
+    // Run an inquirer prompt to ask for the user's desired action
+    inquirer
+    .prompt({
+        type: "list",
+        name: "trackerChoice",
+        message: "What would you like to do?",
+        choices: [
+        "View Departments",
+        "View Roles",
+        "View Employees",
+        "Add Departments",
+        "Add Roles",
+        "Add Employee",
+        "Update Employee Role"
+        ]
+        })
+        .then(answers => {
+        // Based on the selected action, call one of our functions to query the database
+        console.log('Answers: ', answers);
+        switch(answer.trackerChoice) {
+            case "View Departments":
+            viewDepartments();
+            break;
+
+            case "View Roles":
+            viewRoles();
+            break;
+                            
+            case "View Employees":
+            viewRoles();
+            break;
+                                
+            case "Add Department":
+            addDepartment();
+            break;
+
+            case "Add Role":
+            addRole();
+            break;
+                            
+            case "Add Employee":
+            addEmployee();
+            break;
+                            
+            case "Update Employee Role":
+            updateEmployeeRole();
+            break;
+            }
+        })
 }
-return answers.roleChoice;
-    
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id " + connection.threadId);
-    // switch case or if conditions
-    connection.query("SELECT * FROM employee", (err, results) => {
-    if (err) throw err;
-            
-    console.log(results);
-    })
 
-    connection.query("SELECT * FROM employee WHERE department_id = ?" [2], (err, results) => {
-        if (err) throw err;
-                
-        console.log(results);
-    })
+// View
+function viewDepartments() {
+    console.log("Departments Function");
+    let query = "SELECT * FROM department";
+}
 
-    connection.query("SELECT * FROM employee WHERE manager_id = ?" [manager_id], (err, results) => {
-        if (err) throw err;
-                
-        console.log(results);
-    })
-})
+function viewRoles() {
+    console.log("Roles Function");
+    let query = "SELECT * FROM role";
+}
+
+function viewEmployees() {
+    console.log("Employees Function");
+    let query = "SELECT * FROM employee";
+}
+
+// ADD
+function addDepartment() {
+
+}
+
+function addRole() {
+
+}
+
+function addEmployee() {
+
+}
+
+// Update employee role
+function updateEmployeeRole() {
+    // UPDATE employee
+    // SET role_id = 3
+    // WHERE id = 1
+}
+
+
 
 // const mainQuestions = [
 //     {
@@ -73,86 +126,3 @@ connection.connect(function(err) {
 //         message:  "What is the employees role?"
 //     },
 // ]
-
-// Run an inquirer prompt to ask for the user's desired action
-inquirer
-.prompt({
-    name: "trackerChoice",
-    type: "list",
-    message: "What would you like to do?",
-    choices: [
-        "View Departments",
-        "View Roles",
-        "View Employees",
-        "Add Departments",
-        "Add Roles",
-        "Add Employee",
-        "Update Employee Role"
-    ]
-})
-.then(answers => {
-    // Based on the selected action, call one of our functions to query the database
-    console.log('Answers: ', answers);
-    switch(answer.trackerChoice) {
-        case "View Departments":
-            viewDepartments();
-            break;
-
-        case "View Roles":
-            viewRoles();
-            break;
-
-        case "View Employees":
-            viewRoles();
-            break;
-            
-        case "Add Departments":
-            addDepartments();
-            break;
-        
-        case "Add Roles":
-            addRoles();
-            break;
-
-        case "Add Employee":
-            addEmployee();
-            break;
-
-        case "Update Employee Role":
-            updateEmployeeRole();
-            break;
-    }
-});
-
-// View
-function viewDepartments() {
-    
-}
-
-function viewRoles() {
-    console.log("Roles Function");
-}
-
-function viewEmployees() {
-
-}
-
-// ADD
-function addDepartment() {
-
-}
-
-function addRoles() {
-
-}
-
-function addEmployee() {
-
-}
-
-// UPDATE
-function updateEmployeeRole() {
-    // UPDATE employee
-    // SET role_id = 3
-    // WHERE id = 1
-}
