@@ -16,11 +16,4 @@ const connection = mysql.createConnection({
     database: process.env.DATABASE,
   });
 
-  connection.connect(function(err) {
-      if (err) throw err;
-      console.log("connected as id " + connection.threadId);
-      // Calling runStart function ONLY AFTER the connection to database was successful.
-      runStart();
-  });
-
   module.exports = connection;
