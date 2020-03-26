@@ -23,7 +23,7 @@ Clone to your local machine and open in your favorite code editor to check it ou
 
 ### Demo
 
-
+![](https://github.com/K-ai30/employee-tracker/blob/master/images/employeetrackerdemo.gif)
 
 ### Notes
 
