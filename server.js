@@ -46,7 +46,7 @@ function runStart() {
         })
         .then(answers => {
         // Based on the selected action, call one of our functions to query the database
-        console.log('Answers: ', answers);
+        // console.log('Answers: ', answers);
         switch(answers.trackerChoice) {
             case "View Departments":
             viewDepartments();
@@ -81,36 +81,36 @@ function runStart() {
 
 // View
 function viewDepartments() {
-    console.log("Departments Function");
+    // console.log("Departments Function");
     let query = "SELECT * FROM department";
     connection.query(query, (err, res) => {
         if (err) throw err;
         // Log all results of the SELECT statement
-        console.log(res);
+        // console.log(res);
         console.table(chalk.cyan("All Departments:"), res);
         runStart();
     });
 };
 
 function viewRoles() {
-    console.log("Roles Function");
+    // console.log("Roles Function");
     let query = "SELECT * FROM role";
     connection.query(query, (err, res) => {
         if (err) throw err;
         // Log all results of the SELECT statement
-        console.log(res);
+        // console.log(res);
         console.table(chalk.magenta("All Roles:"), res);
         runStart();
     });
 };
 
 function viewEmployees() {
-    console.log("Employees Function");
+    // console.log("Employees Function");
     let query = "SELECT * FROM employee";
     connection.query(query, (err, res) => {
         if (err) throw err;
         // Log all results of the SELECT statement
-        console.log(res);
+        // console.log(res);
         console.table(chalk.green("All Employees:"), res);
         runStart();
     });
